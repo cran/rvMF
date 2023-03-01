@@ -1,0 +1,11 @@
+8000299eb9dad981e009f8160acdec68 *DESCRIPTION
+0d40f21ffeb1e91763cc311e4fbb35ad *NAMESPACE
+c403a64f7e97b8bb49150cb8cf77ba41 *NEWS.md
+b5821344ba6909bbaad9d43a79d36438 *R/RcppExports.R
+5e9d34a3e27c97ffd13fd5385fc8484d *R/rvMF-package.R
+126d5957c81be4ba0c22c73eb4daff1d *R/rvMF.R
+a6ee898cfa23449644df522533153350 *man/rvMF-package.Rd
+8f06ff742f4d3baaca4ea74b50bcf87d *man/rvMF.Rd
+309d1a3ab0af14938dbccc93f8620ede *man/vMFangle.Rd
+a7ed114000c723ade4c43b23ef9e1515 *src/RcppExports.cpp
+e1dfd83221c9ca2371e096384cf1f767 *src/rvMF64.cpp
