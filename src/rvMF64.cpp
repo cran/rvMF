@@ -11,11 +11,11 @@ static unsigned short *AA,*BB,*CC,*DD,*EE;    /* Tables for condensed table-look
 /* Creates the 5 tables after array P[size] has been created */
 void get5tbls(){
   int i,j,m,na=0,nb=0,nc=0,nd=0,ne=0;//k
-  /* get table sizes, malloc */
+  /* get table sizes, calloc */
   for(i=0;i<size;i++){m=P[i];na+=dg(m,1);nb+=dg(m,2);nc+=dg(m,3);nd+=dg(m,4);ne+=dg(m,5);}
-  AA=(unsigned short*)malloc(na*sizeof(short));BB=(unsigned short*)malloc(nb*sizeof(short));
-  CC=(unsigned short*)malloc(nc*sizeof(short));DD=(unsigned short*)malloc(nd*sizeof(short));
-  EE=(unsigned short*)malloc(ne*sizeof(short));
+  AA=(unsigned short*)calloc(na,sizeof(short));BB=(unsigned short*)calloc(nb,sizeof(short));
+  CC=(unsigned short*)calloc(nc,sizeof(short));DD=(unsigned short*)calloc(nd,sizeof(short));
+  EE=(unsigned short*)calloc(ne,sizeof(short));
   t1=na<<24; t2=t1+(nb<<18); t3=t2+(nc<<12); t4=t3+(nd<<6); t5=t4+ne;
   na=nb=nc=nd=ne=0;
   /* Fill tables AA,BB,CC,DD,EE */
@@ -42,8 +42,8 @@ int i,j=-1,imax,last=0;
   p=t=exp(-log_conf);
     for(i=1;t*2147483648.>1;i++) t*=(2*kappa*(m/2.0+i-1)/(m+i-1)/i);  /* 2147483648 = 2^31 */
   size=i-1; offset=0;// last=i-2;
-  /* Given size, malloc and fill P array, (30-bit integers) */
-  P=(int*)malloc(size*sizeof(int)); P[0]=exp(-log_conf)*1073741824+.5; /* add .5 for rounding */
+  /* Given size, calloc and fill P array, (30-bit integers) */
+  P=(int*)calloc(size,sizeof(int)); P[0]=exp(-log_conf)*1073741824+.5; /* add .5 for rounding */
   for(i=1;i<size;i++) {p*=(2*kappa*(m/2.0+i-1)/(m+i-1)/i); P[i]=p*1073741824+.5;} /* 1073741824 = 2^30 */
   }
 
@@ -57,8 +57,8 @@ int i,j=-1,imax,last=0;
   /* imax to down */
   for(i=imax-1;i>=0;i--){t*=((i+1)*(m+i)/(2*kappa)/(m/2.0+i)); if(t*2147483648.<1){j=i;break;} }
   offset=j+1;  size=last-offset+1;
-  /* Given size, malloc and fill P array, (30-bit integers) */
-  P=(int*)malloc(size*sizeof(int));
+  /* Given size, calloc and fill P array, (30-bit integers) */
+  P=(int*)calloc(size,sizeof(int));
   t=p; P[imax-offset]=p*1073741824+.5;
   for(i=imax+1;i<=last;i++){t*=(2*kappa*(m/2.0+i-1)/(m+i-1)/i);P[i-offset]=t*1073741824+.5;}
   t=p;
@@ -80,5 +80,6 @@ NumericVector rvMF64(int n, int p, double kappa, double log_const) {
     else u= EE[j-t4];
     l[i] = 2.*R::rbeta((p-1)/2.0 + u + offset, (p-1)/2.0)-1.;
   }
+  free(AA); free(BB); free(CC); free(DD); free(EE); free(P);
   return l;
 }
