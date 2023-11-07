@@ -1,3 +1,9 @@
+# rvMF 0.0.8
+
+- 	Corrected the way of linking a C++ function.
+- 	Minor typo fix in the document.
+- 	Added ORCID ID.
+
 # rvMF 0.0.7
 
 -   Patch version, handling three additional issues checked by CRAN:
