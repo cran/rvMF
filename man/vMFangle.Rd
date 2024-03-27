@@ -4,7 +4,7 @@
 \alias{vMFangle}
 \alias{rvMFangle}
 \alias{dvMFangle}
-\title{Inner Product of von Mises-Fisher Random Vector and Mean Direction}
+\title{Inner Product of von Mises--Fisher Random Vector and Mean Direction}
 \usage{
 rvMFangle(n, p, kappa)
 
@@ -14,12 +14,12 @@ dvMFangle(r, p, kappa)
 \item{n}{number of random vectors to generate.}
 
 \item{p}{dimension of the sphere. i.e.,
-\ifelse{html}{\out{S<sup>p-1</sup>}}{\eqn{S^{p-1}}}, \eqn{p\ge 2}.}
+\ifelse{html}{\out{S<sup>p-1</sup>}}{\eqn{S^{p-1}}}, \ifelse{html}{\code{p} \out{&ge; 2}}{\eqn{p\ge 2}}.}
 
-\item{kappa}{concentration parameter. \eqn{kappa > 0}. Setting \code{kappa=0} may
-cause errors.}
+\item{kappa}{concentration parameter. \code{kappa > 0}.
+Setting \code{kappa = 0} may cause errors.}
 
-\item{r}{vector of quantiles. \eqn{-1\le r\le 1}.}
+\item{r}{vector of quantiles. \ifelse{html}{\out{-1 &le;} \code{r} \out{&le; 1}}{\eqn{-1\le r\le 1}}.}
 }
 \value{
 \itemize{
@@ -32,13 +32,13 @@ result is determined by the length of \code{r} for \code{dvMFangle()}.
 }
 \description{
 These functions provide information about the distribution of an inner
-product between von Mises-Fisher random vector and its mean direction.
-Specifically, if \eqn{X} follows a von Mises-Fisher distribution with mean
+product between von Mises--Fisher random vector and its mean direction.
+Specifically, if \eqn{X} follows a von Mises--Fisher distribution with mean
 direction \eqn{\mu}, the inner product \eqn{X'\mu} will be a random variable
 following some distribution. See page 170 of Mardia and Jupp (1999).
-\code{rvMFangle()} generates random variates, and \code{dvMFangle} gives the density
-from this distribution. This function partly uses the code from the article
-Marsaglia et al. (2004).
+\code{rvMFangle()} generates random variates using the algorithm proposed in Kang
+and Oh (2024), and \code{dvMFangle} gives the density from this distribution. This
+function partly uses the code from the article Marsaglia et al. (2004).
 }
 \examples{
 rvMFangle(10, 2, 10)
@@ -47,6 +47,9 @@ dvMFangle(seq(-1,1,by=0.01), 2, 10)
 dvMFangle(seq(0,1,by=0.01), 3, 0.1)
 }
 \references{
+S. Kang and H.-S. Oh. Novel sampling method for the von Mises--Fisher
+distribution. \emph{Statistics and Computing}, 34(3):106, 2024.
+
 K. V. Mardia and P. E. Jupp. \emph{Directional Statistics}, volume 494. John Wiley
 & Sons, Chichester, 1999.
 
